@@ -42,5 +42,26 @@ hi forezp,i am from port:8003
 这说明当我们通过调用restTemplate.getForObject(“http://SERVICE/hi?name=”+name,String.class)方法时，已经做了负载均衡，访问了不同的端口的服务实例。
 
 其中会遇到的坑：
-仔细查看项目中 Project Structure 是否存在错误提示，及时改正回来，不然容易造成不易发觉的错误，导致项目
+1，仔细查看项目中 Project Structure 是否存在错误提示，及时改正回来，不然容易造成不易发觉的错误，导致项目
 运行不成功，这种错误不会报错。
+2，defaultZone 的端口号要正确，否则会出现执行到一半没有反应
+
+三：Ribbon，Feign，OpenFeign
+Ribbon
+Ribbon 是 Netflix开源的基于HTTP和TCP等协议负载均衡组件
+Ribbon 可以用来做客户端负载均衡，调用注册中心的服务
+Ribbon的使用需要代码里手动调用目标服务，请参考官方示例：https://github.com/Netflix/ribbon
+
+Feign
+Feign是Spring Cloud组件中的一个轻量级RESTful的HTTP服务客户端
+Feign内置了Ribbon，用来做客户端负载均衡，去调用服务注册中心的服务。
+Feign的使用方式是：使用Feign的注解定义接口，调用这个接口，就可以调用服务注册中心的服务
+Feign支持的注解和用法请参考官方文档：https://github.com/OpenFeign/feign
+Feign本身不支持Spring MVC的注解，它有一套自己的注解
+
+OpenFeign
+OpenFeign是Spring Cloud 在Feign的基础上支持了Spring MVC的注解，如@RequesMapping等等。
+OpenFeign的@FeignClient可以解析SpringMVC的@RequestMapping注解下的接口，
+并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务。
+
+
