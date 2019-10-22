@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-service" />
-        <module name="serice-feign" />
         <module name="service-client" />
+        <module name="service-feign" />
         <module name="service-ribbon" />
       </profile>
     </annotationProcessing>
@@ -16,9 +16,9 @@
       <module name="eureka-server" target="1.8" />
       <module name="eureka-service" target="1.8" />
       <module name="sc-f-chapter2" target="1.8" />
-      <module name="serice-feign" target="1.8" />
       <module name="service" target="1.8" />
       <module name="service-client" target="1.8" />
+      <module name="service-feign" target="1.8" />
       <module name="service-ribbon" target="1.8" />
       <module name="test" target="1.8" />
     </bytecodeTargetLevel>
@@ -27,9 +27,9 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka-server" options="-parameters" />
       <module name="eureka-service" options="-parameters" />
-      <module name="serice-feign" options="-parameters" />
       <module name="service" options="-parameters" />
       <module name="service-client" options="-parameters" />
+      <module name="service-feign" options="-parameters" />
       <module name="service-ribbon" options="-parameters" />
       <module name="test" options="-parameters" />
     </option>
