@@ -64,4 +64,33 @@ OpenFeign是Spring Cloud 在Feign的基础上支持了Spring MVC的注解，如@
 OpenFeign的@FeignClient可以解析SpringMVC的@RequestMapping注解下的接口，
 并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务。
 
+四：断路器
+在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在
+Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常
+会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题
+，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消
+耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难
+性的严重后果，这就是服务故障的“雪崩”效应。
+为了解决这个问题，业界提出了断路器模型。
+Feign 自带断路器，所以推荐还是使用Feign的好，其中 openfeign 更是集合了Feign 和Ribbon
+和SSM框架的标签
 
+1，配置文件
+2，fallback
+3，实现接口
+
+结果：当没有服务提供者的时候，将显示接口实现中的返回值。
+
+五：路由网关(zuul)
+********************************
+大坑：
+spring-cloud-netflix-eureka-client和spring-cloud-starter-netflix-eureka-client这两个
+是不一样的，但都是自动导入的包，导入一定要小心查看，不然倒错了不容易发现，日了狗了，简
+直就是浪费时间！
+********************************
+主要是配置文件的修改，main方法头上添加路由网关的@EnableZuulProxy
+
+总结：客户端的请求首先经过负载均衡（zuul、Ngnix），然后再到服务网关（zuul集群），然后再到具体的服
+
+六：
+见sc-f-chapter3
